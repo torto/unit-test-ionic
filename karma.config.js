@@ -20,12 +20,6 @@ module.exports = function(config) {
             'www/js/**/*.js',
             'test/**/*Test.js',
             {
-                pattern: 'www/js/app.js',
-                watched: false,
-                served: false,
-                included: false
-            },
-            {
                 pattern: 'test/**/*.json',
                 watched: true,
                 served: true,
@@ -56,7 +50,7 @@ module.exports = function(config) {
 
 
         // list of files to exclude
-        exclude: [],
+        exclude: ['www/js/app.js'],
 
 
         // preprocess matching files before serving them to the browser
@@ -95,7 +89,7 @@ module.exports = function(config) {
 
 
         // enable / disable watching file and executing tests whenever any file changes
-        autoWatch: true,
+        autoWatch: false,
 
 
         // start these browsers
@@ -107,6 +101,6 @@ module.exports = function(config) {
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false
+        singleRun: true
     });
 };
