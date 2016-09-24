@@ -18,10 +18,11 @@
       });
 
       it(' - GET METHOD', function() {
-        expect(service.get(0).id).toEqual(0);
-        expect(service.get(0).name).toEqual('Ben Sparrow');
-        expect(service.get(0).lastText).toEqual('You on your way?');
-        expect(service.get(0).face).toEqual('img/ben.png');
+				var elem = service.get(0);
+        expect(elem.id).toEqual(0);
+        expect(elem.name).toEqual('Ben Sparrow');
+        expect(elem.lastText).toEqual('You on your way?');
+        expect(elem.face).toEqual('img/ben.png');
       });
 
       it(' - GET METHOD without exist values', function() {
