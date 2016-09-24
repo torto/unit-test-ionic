@@ -6,10 +6,17 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var Server = require('karma').Server;
 
 var paths = {
   sass: ['./scss/**/*.scss']
 };
+
+gulp.task('test', function(done) {
+  new Server({
+    configFile: __dirname + '/karma.config.js'
+  }, done).start();
+});
 
 gulp.task('default', ['sass']);
 
@@ -21,7 +28,9 @@ gulp.task('sass', function(done) {
     .pipe(minifyCss({
       keepSpecialComments: 0
     }))
-    .pipe(rename({ extname: '.min.css' }))
+    .pipe(rename({
+      extname: '.min.css'
+    }))
     .pipe(gulp.dest('./www/css/'))
     .on('end', done);
 });
