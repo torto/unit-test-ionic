@@ -4,27 +4,29 @@
   describe('DashCtrl', function() {
     var $scope, $ionicPlatform, windowMock, readyCallback;
 
-    beforeEach(module('starter.controllers'));
-    beforeEach(module('starter.services'));
+    beforeEach(function() {
+      module('starter.controllers');
+      module('starter.services');
+      inject(function($injector, $rootScope, $controller, $window) {
+        windowMock = $window;
+        windowMock.device = {
+          platform: 'test'
+        };
+        $scope = $rootScope.$new();
+        $ionicPlatform = {
+          ready: function(callback) {
+            readyCallback = callback;
+          }
+        };
 
-    beforeEach(inject(function($injector, $rootScope, $controller, $window) {
-      windowMock = $window;
-      windowMock.device = {
-        platform: 'test'
-      };
-      $scope = $rootScope.$new();
-      $ionicPlatform = {
-        ready: function(callback) {
-          readyCallback = callback;
-        }
-      };
-
-      $controller('DashCtrl', {
-        $scope: $scope,
-        $ionicPlatform: $ionicPlatform,
-        $window: windowMock
+        $controller('DashCtrl', {
+          $scope: $scope,
+          $ionicPlatform: $ionicPlatform,
+          $window: windowMock
+        });
+				
       });
-    }));
+    });
 
 
     describe('DashCtrl initialize', function() {
