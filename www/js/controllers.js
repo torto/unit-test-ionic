@@ -1,6 +1,18 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', ['$scope', '$ionicPlatform', '$window', function($scope, $ionicPlatform, $window) {
+
+  function init() {
+    $scope.nome = "";
+  }
+
+  $ionicPlatform.ready(function() {
+    $scope.nome = $window.device.platform;
+  });
+
+  init();
+
+}])
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
